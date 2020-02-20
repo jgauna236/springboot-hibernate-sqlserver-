@@ -1,0 +1,15 @@
+package com.example.management;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public class PersonaManager extends GenericManager<Persona, Long>{
+
+	@Override
+	public JpaRepository<Persona, Long> getDAO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+
+}

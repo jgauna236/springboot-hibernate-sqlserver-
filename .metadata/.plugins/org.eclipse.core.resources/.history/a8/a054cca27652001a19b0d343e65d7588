@@ -1,0 +1,66 @@
+package com.example.management;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public abstract class  GenericManager<T, PK extends Serializable>{
+	
+	
+	@Override
+	public T save(T entity) throws BOException {
+		try {
+			return getDAO().save(entity);
+		} catch (Exception e) {
+			throw new BOException(e);
+		}
+	}
+
+	@Override
+	public List<T> getAll() throws BOException {
+		try {
+			return getDAO().findAll();
+		} catch (Exception e) {
+			throw new BOException(e);
+		}
+	}
+
+	@Override
+	public T get(PK id) throws BOException {
+		try {
+			if (id != null) {
+				return getDAO().findOne(id);
+			}
+			else {
+				return null;
+			}
+		} catch (Exception e) {
+			throw new BOException(e);
+		}
+	}
+
+	@Override
+	public void delete(T entity) throws BOException {
+		try {
+			if (entity != null) {
+				getDAO().delete(entity);
+			}
+		} catch (Exception e) {
+			throw new BOException(e);
+		}
+	}
+	
+	@Override
+	public void save(List<T> entities) throws BOException{
+		try {
+			if (entities != null && !entities.isEmpty()) {
+				getDAO().save(entities);
+			}
+		} catch (Exception e) {
+			throw new BOException(e);
+		}
+	}
+	public abstract JpaRepository<T, PK> getDAO();
+
+}

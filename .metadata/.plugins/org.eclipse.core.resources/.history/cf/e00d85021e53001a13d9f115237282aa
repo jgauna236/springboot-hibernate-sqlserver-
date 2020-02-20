@@ -1,0 +1,20 @@
+package com.example.springboot.service;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
+
+import com.example.springboot.entity.Persona;
+import com.example.springboot.entity.Profesion;
+import com.example.springboot.repository.ProfesionRepository;
+
+@Service("profesionService")
+public class ProfesionService extends GenericService<Profesion, String> {
+	
+	private ProfesionRepository profesionRepository;
+	
+	@Override
+	public GenericService<Persona, String> getRepository() {
+		return this.profesionRepository;
+	}
+
+}

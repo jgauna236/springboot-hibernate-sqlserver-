@@ -1,0 +1,22 @@
+package com.example.springboot.service;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
+
+import com.example.springboot.entity.Persona;
+import com.example.springboot.repository.PersonaRepository;
+
+@Service("personaService")
+public class PersonaService extends GenericService<Persona, Long>{
+
+	
+	private transient PersonaRepository personaRepository;
+	
+	@Override
+	public JpaRepository<Persona, Long> getDAO() {
+		return this.personaRepository;
+	}
+	
+	
+
+}

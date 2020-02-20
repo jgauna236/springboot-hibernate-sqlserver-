@@ -1,0 +1,21 @@
+1581940919590	Delete element
+1581940922197	Delete element
+1582047251671	Rename package 'com.example.dao'
+1582047277637	Rename type 'PersonaDAO'
+1582047353987	Rename package 'com.example.controller'
+1582047376189	Rename type 'HelloController'
+1582047402966	Rename type 'PersonaController'
+1582051883501	Rename package 'com.example.service'
+1582051955831	Rename type 'HelloService'
+1582051970226	Rename type 'PersonaService'
+1582052000954	Rename package 'com.example.management'
+1582052015766	Rename type 'GenericManager'
+1582052036882	Rename type 'PersonaManager'
+1582052808060	Rename package 'com.example.service'
+1582052826747	Rename package 'com.example.entity'
+1582052845649	Rename package 'com.example.repository'
+1582052864413	Rename package 'com.example.repository.springboot'
+1582052877492	Rename package 'com.example.controller'
+1582090312913	Infer generic type arguments
+1582157312914	Rename type 'BeanConfig'
+1582157979486	Delete element

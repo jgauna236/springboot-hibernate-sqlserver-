@@ -1,0 +1,80 @@
+package com.example.management;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public abstract class  GenericManager <T, PK extends Serializable>{
+	
+	
+	private Class<T> clazz;
+	
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	public T save(T entity) throws Exception {
+		try {
+			return getDAO().save(entity);
+		} catch (Exception e) {
+			throw new Exception(e);
+		}
+	}
+
+	public GenericManager(Class<T> type) {
+        this.clazz = type;
+    }
+	
+	public List<T> getAll() throws Exception {
+		try {
+			return getDAO().findAll();
+		} catch (Exception e) {
+			throw new Exception(e);
+		}
+	}
+
+	
+	public T get(PK id) throws Exception {
+		try {
+			return (T) getSession().get(clazz, id);
+		} catch (Exception e) {
+			throw new Exception(e);
+		}
+	}
+
+	
+	public void delete(T entity) throws Exception{
+		try {
+			if (entity != null) {
+				getDAO().delete(entity);
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		}
+	}
+	
+	public void save(List<T> entities){
+		try {
+			if (entities != null && !entities.isEmpty()) {
+				getDAO().save(entities);
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		}
+	}
+	
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
+	protected Session getSession() {
+		return sessionFactory.getCurrentSession();
+	}
+		
+	
+	public abstract JpaRepository<T, PK> getDAO();
+
+}

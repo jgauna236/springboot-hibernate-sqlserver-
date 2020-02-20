@@ -1,0 +1,23 @@
+package com.example.springboot.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
+
+import com.example.springboot.entity.Persona;
+import com.example.springboot.repository.PersonaRepository;
+
+@Service("personaService")
+public class PersonaService extends GenericService<Persona, Long>{
+
+	@Autowired
+	private transient PersonaRepository personaRepository;
+	
+	@Override
+	public GenericService<Persona, Long> getRepository() {
+		return this.personaRepository;
+	}
+	
+	
+
+}

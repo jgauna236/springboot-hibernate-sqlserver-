@@ -1,0 +1,101 @@
+package com.example.springboot.repository;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
+
+
+@SuppressWarnings("unchecked")
+@Repository
+public abstract class GenericRepository<T, PK extends Serializable>{
+	
+	private Class<T> clazz;
+	
+	@Autowired
+	@Qualifier("sessionFactory")
+	private SessionFactory sessionFactory;
+	
+	public GenericRepository(Class<T> type) {
+        this.clazz = type;
+    }	
+	
+	
+	public T save(T entity) throws Exception {
+		try {
+			getSession().beginTransaction();
+			getSession().save(entity);
+		    getSession().getTransaction().commit();
+			return entity;
+		} catch (HibernateException e) {
+			throw new Exception("Error al guardar la entidad "+clazz+": "+e.getCause(),e);
+		}
+	}
+	
+	public List<T> save(List<T> entities) throws Exception {
+		try {
+			getSession().beginTransaction();
+			getSession().save(entities);
+		    getSession().getTransaction().commit();
+			return(entities);
+		} catch (HibernateException e) {
+			throw new Exception("Error al guardar la entidad "+clazz+": "+e.getCause(),e);
+		}
+	}
+
+	
+	public T get(PK id) throws Exception {
+		try {
+			return (T) getSession().get(clazz, id);
+		} catch (HibernateException e) {
+			throw new Exception("Error al obtener la la entidad "+clazz+" con id "+id.toString()+": "+e.getCause(),e);
+		}
+	}
+
+	
+	public void update(T entity) throws Exception {
+		try {
+			getSession().beginTransaction();
+			getSession().update(entity);
+		    getSession().getTransaction().commit();
+		} catch (HibernateException e) {
+			throw new Exception("Error al actualizar la entidad "+clazz+": "+e.getCause(),e);
+		}
+	}
+
+	
+	public void delete(T entity) throws Exception {
+		try {
+			getSession().beginTransaction();
+			getSession().delete(entity);
+		    getSession().getTransaction().commit();
+		} catch (HibernateException e) {
+			throw new Exception("Error al eliminar la entidad "+clazz+": "+e.getCause(),e);
+		}
+	}
+	
+	
+	public List<T> getAll() throws Exception {
+		try {
+			return getSession().createQuery("from " + clazz.getName()).list();
+		} catch (HibernateException e) {
+			throw new Exception("Error al enlistar la entidad "+clazz+": "+e.getCause(),e);
+		}
+	}
+	
+
+	
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
+	protected Session getSession() {
+		return sessionFactory.getCurrentSession();
+	}
+	
+}

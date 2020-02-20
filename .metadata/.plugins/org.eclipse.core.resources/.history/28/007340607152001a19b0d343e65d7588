@@ -1,0 +1,16 @@
+package com.example.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/api/persona")
+public class PersonaController {
+	
+	@RequestMapping("/{id}")
+	public String index(@PathVariable("type") Integer tp) {
+		return "Greetings from Spring Boot!";
+	}
+
+}

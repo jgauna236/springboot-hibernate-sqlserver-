@@ -1,0 +1,23 @@
+package com.example.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.management.PersonaManager;
+
+@Service
+@RequestMapping("/api/persona")
+public class PersonaService {
+	
+	@Autowired
+	private transient PersonaManager personaManager;
+	
+	@RequestMapping("/{id}")
+	public String getById(@PathVariable("id") Integer id) {
+		return personaManager.get(id);
+	}
+
+}

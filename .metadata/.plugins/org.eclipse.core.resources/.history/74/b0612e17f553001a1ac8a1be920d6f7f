@@ -1,0 +1,18 @@
+package com.example.springboot.entity;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+@Entity(name="PROFESION")
+public class Profesion{
+	
+	@Id
+	String nombre;
+	
+	@ManyToMany(mappedBy = "profesiones", cascade= CascadeType.ALL)
+	List<Persona> personas;
+}

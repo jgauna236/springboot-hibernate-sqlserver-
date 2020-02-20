@@ -1,0 +1,21 @@
+package com.example.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.entity.Persona;
+import com.example.repository.PersonaRepository;
+
+public class PersonaService extends GenericService<Persona, Long>{
+
+	@Autowired
+	private transient PersonaRepository personaRepository;
+	
+	@Override
+	public JpaRepository<Persona, Long> getDAO() {
+		return this.personaRepository;
+	}
+	
+	
+
+}

@@ -1,0 +1,9 @@
+package com.example.dao;
+
+import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface PersonaDAO extends JpaRepositoryFactory<Persona, Long> {
+
+}

@@ -1,0 +1,14 @@
+package com.example.entity;
+
+import javax.persistence.Entity;
+
+@Entity(name="PERSONA")
+public class Persona {
+	
+	private Long dni;
+	
+	private String nombre;
+	
+	private String apellido;
+
+}

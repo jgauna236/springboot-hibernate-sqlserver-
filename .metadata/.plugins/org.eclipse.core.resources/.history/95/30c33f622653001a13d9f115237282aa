@@ -1,0 +1,50 @@
+package com.example.springboot.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity(name="PERSONA")
+public class Persona {
+	
+	@Id
+	private Long dni;
+	
+	private String nombre;
+	
+	private String apellido;
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+        })
+        @JoinTable(name = "post_tag",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+        )
+    private List<Profesione> profesoines;
+    
+	public Long getDni() {
+		return dni;
+	}
+
+	public void setDni(Long dni) {
+		this.dni = dni;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+}
