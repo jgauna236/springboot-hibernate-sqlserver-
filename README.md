@@ -1,6 +1,7 @@
 # App Backend con SpringBoot y Hibernate para Sql Server
 
 *reemplazar "app-root" con la carrpeta origen de la aplicación
+
 *reemplazar "data-root" con la carrpeta donde se va a almacenar la Base de Datos
   
 -Clonar repositorio.
@@ -13,7 +14,7 @@ docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Demo1234" -p 1433:1433 -v "data-so
 /server:2017-latest
 
 -Deployar app:
-<app-root>/arquetipo/mvnw spring-boot:run -DskipTests -s <data-source>/settings.xml'
+"app-root"/arquetipo/mvnw spring-boot:run -DskipTests -s '"data-source"/settings.xml'
   
 
 
