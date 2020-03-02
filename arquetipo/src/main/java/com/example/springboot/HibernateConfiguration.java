@@ -45,7 +45,8 @@ public class HibernateConfiguration {
         Properties properties = new Properties();
         properties.setProperty("hibernate.dialect", env.getProperty("spring.jpa.hibernate.dialect"));
         properties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql", "false"));
-        properties.setProperty("jpa.generateDdl", env.getProperty("jpa.generateDdl", "true"));
+        properties.setProperty("jpa.generateDdl", env.getProperty("spring.jpa.generate-ddl"));
+        properties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("spring.jpa.hibernate.ddl-auto"));
         sessionFactory.setHibernateProperties(properties);
         return sessionFactory;
     }
