@@ -13,7 +13,7 @@ https://hub.docker.com/_/microsoft-mssql-server
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Demo1234" -p 1433:1433 -v "data-source"/data:/var/opt/mssql  mcr.microsoft.com/mssql/server:2017-latest
 
 -Deployar app:
-"app-root"/arquetipo/mvnw spring-boot:run -DskipTests -s '"data-source"/settings.xml'
+"app-root"/arquetipo/mvnw spring-boot:run -DskipTests -s '"app-source"/maven/settings.xml'
   
 
 
